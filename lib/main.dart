@@ -1,115 +1,207 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent, // navigation bar color
+      statusBarIconBrightness: Brightness.dark, // status bar icons' color
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ),
+  );
+
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MainPage(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  _ExpensesPageState createState() => _ExpensesPageState();
+}
+
+class _ExpensesPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final mediaQuery = MediaQuery.of(context);
+    final getHeight = mediaQuery.size.height;
+    final getWidht = mediaQuery.size.width;
+    final appbarHeight = mediaQuery.padding.top;
+    final bottomPadding = mediaQuery.padding.bottom;
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      backgroundColor: const Color(0xffF0F8FF),
+      body: SafeArea(
+        minimum: const EdgeInsets.all(20.0),
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                InkWell(
+                  child: const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://avatars.githubusercontent.com/u/82513502?v=4'),
+                  ),
+                  onTap: () {
+                    // ignore: avoid_print
+                    print("tap pp");
+                  },
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                const Text(
+                  "Gibran Alazka",
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const Spacer(),
+                InkWell(
+                  child: Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: const Color(0xff161B22),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    // ignore: avoid_print
+                    print("tap pp");
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                width: getWidht,
+                height: 180,
+                decoration: BoxDecoration(
+                  color: const Color(0xffFFFFFF),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: SafeArea(
+                  minimum: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            "Total Wallet Balance",
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const Spacer(),
+                          InkWell(
+                            child: const Text(
+                              "USD",
+                              style: TextStyle(
+                                color: Color(0xFFF7931A),
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        "\$ 66641.20",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      const Text(
+                        "Monthly Profit",
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Row(
+                        children: [
+                          const Text(
+                            "\$1850.00",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                            ),
+                          ),
+                          const Spacer(),
+                          Container(
+                            constraints: const BoxConstraints(
+                              maxHeight: double.infinity,
+                            ),
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: const Color(0xff58BD7D),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 15,
+                                ),
+                                Text(" +13%")
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              onTap: () {},
+            ),
+            const SizedBox(height: 20),
             const Text(
-              'You have pushed the button this many times:',
+              "Portofolio",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
