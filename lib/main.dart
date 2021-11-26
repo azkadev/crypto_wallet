@@ -224,7 +224,22 @@ class _ExpensesPageState extends State<MainPage> {
                     cardCrypto(getWidht),
                   ],
                 ),
-              )
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                "Market Trend",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 30),
+              cardMarketTrend(getWidht),
+              const SizedBox(height: 10),
+              cardMarketTrend(getWidht),
+              const SizedBox(height: 10),
+              cardMarketTrend(getWidht),
             ],
           ),
         ),
@@ -308,6 +323,82 @@ cardCrypto(getWidht) {
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
               ),
+            ),
+          ],
+        ),
+      ),
+    ),
+    onTap: () {},
+  );
+}
+
+cardMarketTrend(getWidht) {
+  return InkWell(
+    borderRadius: BorderRadius.circular(20),
+    child: Container(
+      width: getWidht,
+      height: 70,
+      decoration: BoxDecoration(
+        color: const Color(0xffFFFFFF),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: SafeArea(
+        minimum: const EdgeInsets.all(10.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://avatars.githubusercontent.com/u/82513502?v=4'),
+            ),
+            const SizedBox(width: 15),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "UNISWAP",
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  "UNI",
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+            const Spacer(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: const [
+                Text(
+                  "\$16,351.57",
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  "3.7%",
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
