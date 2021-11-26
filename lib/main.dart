@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:iconsax/iconsax.dart';
 import 'pages/home.dart';
 import 'pages/home2.dart';
 
@@ -30,7 +31,7 @@ class MainPage extends StatefulWidget {
 
 class _ExpensesPageState extends State<MainPage> {
   var indexPage = 0;
-  var listPage = [HomePage(), HomePage2()];
+  var listPage = [const HomePage(),const HomePage2(),];
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -59,27 +60,27 @@ class _ExpensesPageState extends State<MainPage> {
             showUnselectedLabels: false,
             currentIndex: indexPage,
             onTap: (int index) {
-              setState(() {
-                if (index == 1 || index == 0) {
+              if (index == 1 || index == 0) {
+                setState(() {
                   indexPage = index;
-                }
-              });
+                });
+              }
             },
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home, color: Colors.black),
+                icon: Icon(Iconsax.home, color: Colors.black),
                 label: 'Personal',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.wallet_giftcard_sharp, color: Colors.black),
+                icon: Icon(Iconsax.wallet, color: Colors.black),
                 label: 'Notifications',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.message, color: Colors.black),
+                icon: Icon(Iconsax.message, color: Colors.black),
                 label: 'Personal',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person, color: Colors.black),
+                icon: Icon(Iconsax.profile_2user, color: Colors.black),
                 label: 'Notifications',
               ),
             ],

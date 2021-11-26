@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -50,7 +53,7 @@ class HomePage extends StatelessWidget {
                     ),
                     child: const Center(
                       child: Icon(
-                        Icons.add,
+                        Iconsax.notification,
                         color: Colors.white,
                         size: 25,
                       ),
@@ -92,13 +95,24 @@ class HomePage extends StatelessWidget {
                           ),
                           const Spacer(),
                           InkWell(
-                            child: const Text(
-                              "USD",
-                              style: TextStyle(
-                                color: Color(0xFFF7931A),
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text(
+                                  "USD",
+                                  style: TextStyle(
+                                    color: Color(0xFFF7931A),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Icon(
+                                  Iconsax.arrow_down,
+                                  color: Color(0xFFF7931A),
+                                  size: 15,
+                                ),
+                              ],
                             ),
                             onTap: () {},
                           ),
@@ -147,11 +161,18 @@ class HomePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
                                 Icon(
-                                  Icons.add,
+                                  Iconsax.arrow_up,
                                   color: Colors.white,
                                   size: 15,
                                 ),
-                                Text(" +13%")
+                                Text(
+                                  " +13%",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -275,11 +296,18 @@ cardCrypto(getWidht) {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Icon(
-                        Icons.add,
+                        Iconsax.arrow_up,
                         color: Colors.white,
                         size: 15,
                       ),
-                      Text(" +13%")
+                      Text(
+                        " +13%",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -359,8 +387,8 @@ cardMarketTrend(getWidht) {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   "\$16,351.57",
                   style: TextStyle(
                     color: Colors.blueGrey,
@@ -368,14 +396,25 @@ cardMarketTrend(getWidht) {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                Spacer(),
-                Text(
-                  "3.7%",
-                  style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                  ),
+                const Spacer(),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Iconsax.arrow_up,
+                      color: Colors.blueGrey,
+                      size: 15,
+                    ),
+                    Text(
+                      " +13%",
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),
