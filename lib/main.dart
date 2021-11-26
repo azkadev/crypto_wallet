@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'pages/home.dart';
+import 'pages/home2.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -27,6 +29,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _ExpensesPageState extends State<MainPage> {
+  var indexPage = 0;
+  var listPage = [HomePage(), HomePage2()];
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -36,374 +40,52 @@ class _ExpensesPageState extends State<MainPage> {
     final bottomPadding = mediaQuery.padding.bottom;
     return Scaffold(
       backgroundColor: const Color(0xffF0F8FF),
-      body: SafeArea(
-        minimum: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  InkWell(
-                    child: const CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://avatars.githubusercontent.com/u/82513502?v=4'),
-                    ),
-                    onTap: () {
-                      // ignore: avoid_print
-                      print("tap pp");
-                    },
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const Text(
-                    "Gibran Alazka",
-                    style: TextStyle(
-                      color: Colors.blueGrey,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const Spacer(),
-                  InkWell(
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff161B22),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Center(
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 25,
-                        ),
-                      ),
-                    ),
-                    onTap: () {
-                      // ignore: avoid_print
-                      print("tap pp");
-                    },
-                  ),
-                ],
+      body: listPage[indexPage],
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
+          ),
+          child: BottomNavigationBar(
+            showSelectedLabels: false, // <-- HERE
+            showUnselectedLabels: false,
+            currentIndex: indexPage,
+            onTap: (int index) {
+              setState(() {
+                if (index == 1 || index == 0) {
+                  indexPage = index;
+                }
+              });
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home, color: Colors.black),
+                label: 'Personal',
               ),
-              const SizedBox(
-                height: 15,
+              BottomNavigationBarItem(
+                icon: Icon(Icons.wallet_giftcard_sharp, color: Colors.black),
+                label: 'Notifications',
               ),
-              InkWell(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  width: getWidht,
-                  height: 180,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffFFFFFF),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: SafeArea(
-                    minimum: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const Text(
-                              "Total Wallet Balance",
-                              style: TextStyle(
-                                color: Colors.blueGrey,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            const Spacer(),
-                            InkWell(
-                              child: const Text(
-                                "USD",
-                                style: TextStyle(
-                                  color: Color(0xFFF7931A),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          "\$ 66641.20",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        const Text(
-                          "Monthly Profit",
-                          style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Row(
-                          children: [
-                            const Text(
-                              "\$1850.00",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 25,
-                              ),
-                            ),
-                            const Spacer(),
-                            Container(
-                              constraints: const BoxConstraints(
-                                maxHeight: double.infinity,
-                              ),
-                              height: 30,
-                              decoration: BoxDecoration(
-                                color: const Color(0xff58BD7D),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                    size: 15,
-                                  ),
-                                  Text(" +13%")
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                onTap: () {},
+              BottomNavigationBarItem(
+                icon: Icon(Icons.message, color: Colors.black),
+                label: 'Personal',
               ),
-              const SizedBox(height: 20),
-              const Text(
-                "Portofolio",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person, color: Colors.black),
+                label: 'Notifications',
               ),
-              const SizedBox(height: 20),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    cardCrypto(getWidht),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    cardCrypto(getWidht),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    cardCrypto(getWidht),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    cardCrypto(getWidht),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    cardCrypto(getWidht),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                "Market Trend",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 30),
-              cardMarketTrend(getWidht),
-              const SizedBox(height: 10),
-              cardMarketTrend(getWidht),
-              const SizedBox(height: 10),
-              cardMarketTrend(getWidht),
             ],
           ),
         ),
       ),
     );
   }
-}
-
-cardCrypto(getWidht) {
-  return InkWell(
-    borderRadius: BorderRadius.circular(20),
-    child: Container(
-      constraints: const BoxConstraints(
-        maxHeight: double.infinity,
-      ),
-      height: 200,
-      decoration: BoxDecoration(
-        color: const Color(0xffFFFFFF),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: SafeArea(
-        minimum: const EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 5),
-            const CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://avatars.githubusercontent.com/u/82513502?v=4'),
-            ),
-            const SizedBox(height: 15),
-            Row(
-              children: [
-                const Text(
-                  "Bitcoin",
-                  style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Container(
-                  constraints: const BoxConstraints(
-                    maxHeight: double.infinity,
-                  ),
-                  height: 30,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff58BD7D),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 15,
-                      ),
-                      Text(" +13%")
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 15),
-            const Text(
-              "\$36,641.20",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              "BTC",
-              style: TextStyle(
-                color: Colors.blueGrey,
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-    onTap: () {},
-  );
-}
-
-cardMarketTrend(getWidht) {
-  return InkWell(
-    borderRadius: BorderRadius.circular(20),
-    child: Container(
-      width: getWidht,
-      height: 70,
-      decoration: BoxDecoration(
-        color: const Color(0xffFFFFFF),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: SafeArea(
-        minimum: const EdgeInsets.all(10.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://avatars.githubusercontent.com/u/82513502?v=4'),
-            ),
-            const SizedBox(width: 15),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "UNISWAP",
-                  style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Spacer(),
-                Text(
-                  "UNI",
-                  style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
-            ),
-            const Spacer(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
-                Text(
-                  "\$16,351.57",
-                  style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Spacer(),
-                Text(
-                  "3.7%",
-                  style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-    onTap: () {},
-  );
 }
