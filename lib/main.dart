@@ -202,40 +202,117 @@ class _ExpensesPageState extends State<MainPage> {
               ),
               const SizedBox(height: 20),
               SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: const [
-                      Text("sasasas"),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text("bbjbj"),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text("sasasas"),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text("bbjbj"),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text("bbjbj"),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text("sasasas"),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text("bbjbj"),
-                    ],
-                  ))
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    cardCrypto(getWidht),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    cardCrypto(getWidht),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    cardCrypto(getWidht),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    cardCrypto(getWidht),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    cardCrypto(getWidht),
+                  ],
+                ),
+              )
             ],
           ),
         ),
       ),
     );
   }
+}
+
+cardCrypto(getWidht) {
+  return InkWell(
+    borderRadius: BorderRadius.circular(20),
+    child: Container(
+      constraints: const BoxConstraints(
+        maxHeight: double.infinity,
+      ),
+      height: 200,
+      decoration: BoxDecoration(
+        color: const Color(0xffFFFFFF),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: SafeArea(
+        minimum: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 5),
+            const CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://avatars.githubusercontent.com/u/82513502?v=4'),
+            ),
+            const SizedBox(height: 15),
+            Row(
+              children: [
+                const Text(
+                  "Bitcoin",
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Container(
+                  constraints: const BoxConstraints(
+                    maxHeight: double.infinity,
+                  ),
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff58BD7D),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 15,
+                      ),
+                      Text(" +13%")
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 15),
+            const Text(
+              "\$36,641.20",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "BTC",
+              style: TextStyle(
+                color: Colors.blueGrey,
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+    onTap: () {},
+  );
 }
