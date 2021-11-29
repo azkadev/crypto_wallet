@@ -1,6 +1,3 @@
 # crypto_wallet
 
-![](/assets/1.png)
-![](/assets/2.png)
-![](/assets/3.png)
-![](/assets/4.png)
+![](https://github.com/azkadev/azkadev/blob/main/flutter/crypto_wallet/crypto_wallet.png)
